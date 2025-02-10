@@ -29,12 +29,12 @@
                                 <div class="ms-2">
                                     <a href="{{ route('pengadaan.print', ['sort_by' => 'newest']) }}" class="btn btn-danger"
                                         target="_blank"><i class="fa fa-print"></i>
-                                        PDF
+                                        Cetak
                                     </a>
                                     <!--  <a href="{{ route('pengadaan.print', ['sort_by' => 'oldest']) }}"
-                                                                                                    class="btn btn-secondary" target="_blank"><i class="fa fa-print"></i>
-                                                                                                    Print Terlama
-                                                                                                </a> -->
+                                                                                                                    class="btn btn-secondary" target="_blank"><i class="fa fa-print"></i>
+                                                                                                                    Print Terlama
+                                                                                                                </a> -->
                                 </div>
                                 <!-- End Print PDF Buttons -->
                             </div>
@@ -71,7 +71,7 @@
                                                 <th>Tanggal Penerimaan</th>
                                                 <th>Kode Barang</th>
                                                 <th>Jumlah Pengadaan Barang</th>
-                                                <th style="width: 10%">Action</th>
+                                                <th style="width: 10%">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>

@@ -27,7 +27,7 @@
                                 <div class="ms-2">
                                     <a href="{{ route('barang.print', ['sort_by' => 'newest']) }}" class="btn btn-danger"
                                         target="_blank">
-                                        <i class="fa fa-print"></i> PDF
+                                        <i class="fa fa-print"></i> Cetak
                                     </a>
                                 </div>
                                 <!-- End Print PDF Buttons -->
@@ -69,7 +69,7 @@
                                                 <th>Status Barang</th>
                                                 <th>Keterangan</th>
                                                 <th>Foto Barang</th>
-                                                <th style="width: 10%">Action</th>
+                                                <th style="width: 10%">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>

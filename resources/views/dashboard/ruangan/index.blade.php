@@ -29,12 +29,12 @@
                                 <div class="ms-2">
                                     <a href="{{ route('ruangan.print', ['sort_by' => 'newest']) }}" class="btn btn-danger"
                                         target="_blank">
-                                        <i class="fa fa-print"></i> PDF
+                                        <i class="fa fa-print"></i> Cetak
                                     </a>
                                     <!--  <a href="{{ route('ruangan.print', ['sort_by' => 'oldest']) }}"
-                                                                                                                                        class="btn btn-secondary" target="_blank">
-                                                                                                                                        <i class="fa fa-print"></i> Print Terlama
-                                                                                                                                    </a> -->
+                                                                                                                                                    class="btn btn-secondary" target="_blank">
+                                                                                                                                                    <i class="fa fa-print"></i> Print Terlama
+                                                                                                                                                </a> -->
                                 </div>
                                 <!-- End Print PDF Buttons -->
                             </div>
@@ -73,7 +73,7 @@
                                                 <th>Nama Ruangan</th>
                                                 <th>Kondisi Ruangan</th>
                                                 <th>Keterangan</th>
-                                                <th style="width: 10%">Action</th>
+                                                <th style="width: 10%">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>

@@ -39,6 +39,7 @@
                                     <table id="add-row" class="display table table-striped table-hover">
                                         <thead>
                                             <tr>
+                                                <th>No</th> <!-- Kolom nomor -->
                                                 <th>Tanggal Peminjaman</th>
                                                 <th>Tanggal Pengembalian</th>
                                                 <th>Nama Peminjam</th>
@@ -52,6 +53,7 @@
                                         <tbody>
                                             @foreach ($dataHistories as $history)
                                                 <tr>
+                                                    <td>{{ $loop->iteration }}</td> <!-- Nomor urut -->
                                                     <td>{{ $history->tgl_peminjaman }}</td>
                                                     <td>{{ $history->tgl_pengembalian }}</td>
                                                     <td>{{ $history->nama_peminjam }}</td>
@@ -61,7 +63,6 @@
                                                     <td>{{ $history->status }}</td>
                                                     <td>{{ $history->deleted_at ? $history->deleted_at->format('Y-m-d') : '-' }}
                                                     </td>
-
                                                 </tr>
                                             @endforeach
                                         </tbody>
