@@ -18,8 +18,7 @@
             <!-- Tombol Cetak -->
             <div class="d-flex justify-content-end mb-3">
                 <a href="{{ route('peminjaman.history.print', 'newest') }}" class="btn btn-primary me-2"
-                    target="_blank">Print Data
-                    Terbaru</a>
+                    target="_blank">Print Data Terbaru</a>
                 <a href="{{ route('peminjaman.history.print', 'oldest') }}" class="btn btn-secondary" target="_blank">Print
                     Data Terlama</a>
             </div>
@@ -39,7 +38,7 @@
                                     <table id="add-row" class="display table table-striped table-hover">
                                         <thead>
                                             <tr>
-                                                <th>No</th> <!-- Kolom nomor -->
+                                                <th>No</th>
                                                 <th>Tanggal Peminjaman</th>
                                                 <th>Tanggal Pengembalian</th>
                                                 <th>Nama Peminjam</th>
@@ -53,12 +52,28 @@
                                         <tbody>
                                             @foreach ($dataHistories as $history)
                                                 <tr>
-                                                    <td>{{ $loop->iteration }}</td> <!-- Nomor urut -->
+                                                    <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $history->tgl_peminjaman }}</td>
                                                     <td>{{ $history->tgl_pengembalian }}</td>
                                                     <td>{{ $history->nama_peminjam }}</td>
-                                                    <td>{{ $history->dataBarang->kode_barang ?? 'N/A' }}</td>
-                                                    <td>{{ $history->dataRuangan->kode_ruangan ?? 'N/A' }}</td>
+                                                    <td>
+                                                        @if ($history->kode_barang)
+                                                            @foreach (json_decode($history->kode_barang) as $barangId)
+                                                                {{ \App\Models\DataBarang::find($barangId)->nama_barang ?? '-' }}<br>
+                                                            @endforeach
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($history->kode_ruangan)
+                                                            @foreach (json_decode($history->kode_ruangan) as $ruanganId)
+                                                                {{ \App\Models\DataRuangan::find($ruanganId)->nama_ruangan ?? '-' }}<br>
+                                                            @endforeach
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </td>
                                                     <td>{{ $history->jumlah }}</td>
                                                     <td>{{ $history->status }}</td>
                                                     <td>{{ $history->deleted_at ? $history->deleted_at->format('Y-m-d') : '-' }}

@@ -18,11 +18,12 @@ class CreateDataPeminjamanTable extends Migration
             $table->date('tgl_peminjaman');
             $table->date('tgl_pengembalian');
             $table->string('nama_peminjam');
-            $table->foreignId('kode_barang')->nullable()->constrained('data_barangs')->onDelete('set null');
-            $table->foreignId('kode_ruangan')->nullable()->constrained('data_ruangans')->onDelete('set null');
+            $table->json('kode_barang')->nullable(); // Menyimpan array ID barang
+            $table->json('kode_ruangan')->nullable(); // Menyimpan array ID ruangan
             $table->integer('jumlah')->nullable();
             $table->string('status');
             $table->timestamps();
+            $table->softDeletes(); // Menambahkan fitur soft delete
         });
     }
 

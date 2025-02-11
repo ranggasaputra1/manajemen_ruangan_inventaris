@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DataPeminjaman extends Model
 {
-    use HasFactory;
-
-    protected $table = 'data_peminjaman'; // Pastikan ini sesuai dengan nama tabel di database
+    use HasFactory, SoftDeletes;
+    
+    protected $table = 'data_peminjaman';
 
     protected $fillable = [
         'tgl_peminjaman',
@@ -22,16 +22,20 @@ class DataPeminjaman extends Model
         'status',
     ];
 
+    protected $casts = [
+        'kode_barang' => 'array',
+        'kode_ruangan' => 'array',
+    ];
+
     public function dataBarang()
-{
-    return $this->belongsTo(DataBarang::class, 'kode_barang');
-}   
+    {
+        return $this->hasMany(DataBarang::class, 'id', 'kode_barang');
+    }
+
     public function dataRuangan()
     {
-        return $this->belongsTo(DataRuangan::class, 'kode_ruangan');
+        return $this->hasMany(DataRuangan::class, 'id', 'kode_ruangan');
     }
-    
-    use SoftDeletes;
-    
+
     protected $dates = ['deleted_at'];
 }

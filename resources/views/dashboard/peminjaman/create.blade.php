@@ -1,4 +1,3 @@
-<!-- resources/views/peminjaman/create.blade.php -->
 @extends('dashboard.layouts.main')
 
 @section('container')
@@ -42,34 +41,51 @@
                                         value="{{ old('nama_peminjam') }}" required>
                                 </div>
                                 <div class="form-group mb-3">
+                                    <label for="jenis_peminjaman">Jenis Peminjaman</label>
+                                    <select name="jenis_peminjaman" id="jenis_peminjaman" class="form-select" required>
+                                        <option value="">Pilih Jenis Peminjaman</option>
+                                        <option value="barang">Barang</option>
+                                        <option value="ruangan">Ruangan</option>
+                                        <option value="barang_ruangan">Barang & Ruangan</option>
+                                    </select>
+                                </div>
+
+                                <!-- Pilihan Barang (Multiple) -->
+                                <div class="form-group mb-3" id="barang_section" style="display: none;">
                                     <label for="kode_barang">Kode Barang</label>
-                                    <select name="kode_barang" id="kode_barang" class="form-select" required>
-                                        <option value="">Pilih Kode Barang</option>
+                                    <select name="kode_barang[]" id="kode_barang" class="form-select" multiple>
                                         @foreach ($dataBarangs as $barang)
-                                            <option value="{{ $barang->id }}"
-                                                {{ old('kode_barang') == $barang->id ? 'selected' : '' }}>
+                                            <option value="{{ $barang->id }}">
                                                 {{ $barang->kode_barang }} - {{ $barang->nama_barang }}
                                             </option>
                                         @endforeach
                                     </select>
+                                    <small class="text-muted">Tekan CTRL (Windows) / CMD (Mac) untuk memilih lebih dari
+                                        satu.</small>
                                 </div>
-                                <div class="form-group mb-3">
+
+                                <div class="form-group mb-3" id="ruangan_section" style="display: none;">
                                     <label for="kode_ruangan">Kode Ruangan</label>
-                                    <select name="kode_ruangan" id="kode_ruangan" class="form-select" required>
-                                        <option value="">Pilih Kode Ruangan</option>
+                                    <select name="kode_ruangan[]" id="kode_ruangan" class="form-select" multiple>
                                         @foreach ($dataRuangan as $ruangan)
-                                            <option value="{{ $ruangan->id }}"
-                                                {{ old('kode_ruangan') == $ruangan->id ? 'selected' : '' }}>
+                                            <option value="{{ $ruangan->id }}">
                                                 {{ $ruangan->kode_ruangan }} - {{ $ruangan->nama_ruangan }}
                                             </option>
                                         @endforeach
                                     </select>
+                                    <small class="text-muted">Tekan CTRL (Windows) / CMD (Mac) untuk memilih lebih dari
+                                        satu.</small>
                                 </div>
-                                <div class="form-group mb-3">
-                                    <label for="jumlah">Jumlah</label>
+
+
+
+                                <!-- Input Jumlah Barang -->
+                                <div class="form-group mb-3" id="jumlah_section">
+                                    <label for="jumlah">Jumlah Barang yang Dipinjam</label>
                                     <input type="number" name="jumlah" id="jumlah" class="form-control"
                                         value="{{ old('jumlah') }}" required>
                                 </div>
+
                                 <div class="form-group mb-3">
                                     <label for="status">Status</label>
                                     <input type="text" name="status" id="status" class="form-control"
@@ -87,7 +103,6 @@
     <!-- Include Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Custom JavaScript for auto-hide alert -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var alert = document.getElementById('auto-hide-alert');
@@ -95,8 +110,44 @@
                 setTimeout(function() {
                     var bsAlert = new bootstrap.Alert(alert);
                     bsAlert.close();
-                }, 5000); // Change 5000 to the desired time in milliseconds
+                }, 5000);
             }
+
+            var jenisPeminjaman = document.getElementById('jenis_peminjaman');
+            var barangSection = document.getElementById('barang_section');
+            var ruanganSection = document.getElementById('ruangan_section');
+            var jumlahSection = document.getElementById('jumlah_section');
+            var kodeBarang = document.getElementById('kode_barang');
+            var kodeRuangan = document.getElementById('kode_ruangan');
+            var jumlahInput = document.getElementById('jumlah');
+
+            jenisPeminjaman.addEventListener('change', function() {
+                if (this.value === 'barang') {
+                    barangSection.style.display = 'block';
+                    ruanganSection.style.display = 'none';
+                    jumlahSection.style.display = 'block';
+                    kodeRuangan.value = '';
+                    jumlahInput.required = true;
+                } else if (this.value === 'ruangan') {
+                    barangSection.style.display = 'none';
+                    ruanganSection.style.display = 'block';
+                    jumlahSection.style.display = 'none';
+                    kodeBarang.value = '';
+                    jumlahInput.required = false;
+                } else if (this.value === 'barang_ruangan') {
+                    barangSection.style.display = 'block';
+                    ruanganSection.style.display = 'block';
+                    jumlahSection.style.display = 'block';
+                    jumlahInput.required = true;
+                } else {
+                    barangSection.style.display = 'none';
+                    ruanganSection.style.display = 'none';
+                    jumlahSection.style.display = 'none';
+                    kodeBarang.value = '';
+                    kodeRuangan.value = '';
+                    jumlahInput.required = false;
+                }
+            });
         });
     </script>
 @endsection
