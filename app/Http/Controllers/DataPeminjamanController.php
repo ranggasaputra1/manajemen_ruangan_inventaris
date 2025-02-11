@@ -145,8 +145,13 @@ public function show($id)
         }
     }
 
-    // Jika status 'Dikembalikan', data dipindahkan ke history dan dihapus
+    // Jika status 'Dikembalikan', ubah status sebelum menghapus data
     if ($request->status === 'Dikembalikan') {
+        // Simpan perubahan status sebelum dihapus
+        $peminjaman->update([
+            'status' => 'Dikembalikan'
+        ]);
+
         // Mengembalikan stok barang
         foreach ($newKodeBarang as $barangId) {
             $barang = DataBarang::find($barangId);
@@ -155,6 +160,8 @@ public function show($id)
                 $barang->save();
             }
         }
+
+        // Hapus data setelah status diperbarui
         $peminjaman->delete();
 
         return redirect()->route('peminjaman.index')->with('success', 'Peminjaman dikembalikan dan dicatat dalam riwayat.');
@@ -168,13 +175,22 @@ public function show($id)
         'kode_barang' => $newKodeBarang ? json_encode($newKodeBarang) : null,
         'kode_ruangan' => $request->kode_ruangan ? json_encode($request->kode_ruangan) : null,
         'jumlah' => $request->jumlah,
-        'status' => $request->status,
+        'status' => $request->status, // Pastikan status tetap diperbarui
     ]);
 
     return redirect()->route('peminjaman.index')->with('success', 'Data peminjaman berhasil diperbarui.');
 }
 
+    public function printSingle($id)
+    {
+        
+        $peminjaman = DataPeminjaman::with(['dataBarang', 'dataRuangan'])->findOrFail($id);
 
+        
+        $pdf = Pdf::loadView('dashboard.peminjaman.print_single', compact('peminjaman'));
+
+        return $pdf->stream('peminjaman.pdf');
+    }
 
     public function print(Request $request, $sort_by)
 {
@@ -245,4 +261,5 @@ public function show($id)
         $pdf = Pdf::loadView('dashboard.peminjaman.history_print', compact('dataHistories'));
         return $pdf->stream('history_peminjaman.pdf');
     }
+    
 }

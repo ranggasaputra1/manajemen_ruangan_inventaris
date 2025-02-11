@@ -39,3 +39,4 @@ class DataPeminjaman extends Model
 
     protected $dates = ['deleted_at'];
 }
+

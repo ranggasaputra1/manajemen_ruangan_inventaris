@@ -92,8 +92,10 @@ Route::middleware('auth')->group(function () {
     Route::get('peminjaman/{id}', [DataPeminjamanController::class, 'show'])->name('peminjaman.show');
     Route::get('peminjaman/{id}/edit', [DataPeminjamanController::class, 'edit'])->name('peminjaman.edit');
     Route::put('peminjaman/{id}', [DataPeminjamanController::class, 'update'])->name('peminjaman.update');
+    Route::get('/peminjaman/print/{id}', [DataPeminjamanController::class, 'printSingle'])
+    ->name('peminjaman.print.single');
     Route::delete('peminjaman/{id}', [DataPeminjamanController::class, 'destroy'])->name('peminjaman.destroy');
-    Route::get('peminjaman/print/{sort_by}', [DataPeminjamanController::class, 'print'])->name('peminjaman.print');
+    Route::get('/peminjaman/print/all/{sort_by}', [DataPeminjamanController::class, 'print'])->name('peminjaman.print');
     Route::get('/peminjaman/history/data', [DataPeminjamanController::class, 'history'])->name('peminjaman.history');
     Route::get('/peminjaman/history/print/{sort_by}', [DataPeminjamanController::class, 'printHistory'])->name('peminjaman.history.print');
 

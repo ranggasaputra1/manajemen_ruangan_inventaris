@@ -53,9 +53,9 @@
                                             Cetak
                                         </a>
                                         <!--    <a href="{{ route('peminjaman.print', ['sort_by' => 'oldest']) }}"
-                                                                                                                            class="btn btn-secondary" target="_blank"><i class="fa fa-print"></i>
-                                                                                                                            Print Terlama
-                                                                                                                        </a> -->
+                                                                                                                                                    class="btn btn-secondary" target="_blank"><i class="fa fa-print"></i>
+                                                                                                                                                    Print Terlama
+                                                                                                                                                </a> -->
                                     </div>
                                     <!-- End Print PDF Buttons -->
                                 </div>
@@ -142,6 +142,11 @@
                                                                     data-bs-toggle="tooltip" title="Edit"
                                                                     class="btn btn-link btn-primary">
                                                                     <i class="fa fa-edit"></i>
+                                                                </a>
+                                                                <a href="{{ route('peminjaman.print.single', $peminjaman->id) }}"
+                                                                    data-bs-toggle="tooltip" title="Cetak"
+                                                                    class="btn btn-link btn-secondary" target="_blank">
+                                                                    <i class="fa fa-print"></i>
                                                                 </a>
                                                                 <form
                                                                     action="{{ route('peminjaman.destroy', $peminjaman->id) }}"
