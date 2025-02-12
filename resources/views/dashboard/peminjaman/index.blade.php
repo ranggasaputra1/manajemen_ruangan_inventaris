@@ -53,9 +53,9 @@
                                             Cetak
                                         </a>
                                         <!--    <a href="{{ route('peminjaman.print', ['sort_by' => 'oldest']) }}"
-                                                                                                                                                    class="btn btn-secondary" target="_blank"><i class="fa fa-print"></i>
-                                                                                                                                                    Print Terlama
-                                                                                                                                                </a> -->
+                                                                                                                                                                    class="btn btn-secondary" target="_blank"><i class="fa fa-print"></i>
+                                                                                                                                                                    Print Terlama
+                                                                                                                                                                </a> -->
                                     </div>
                                     <!-- End Print PDF Buttons -->
                                 </div>
@@ -92,8 +92,8 @@
                                                     <th>Tanggal Peminjaman</th>
                                                     <th>Tanggal Pengembalian</th>
                                                     <th>Nama Peminjam</th>
-                                                    <th>Kode Barang</th>
-                                                    <th>Kode Ruangan</th>
+                                                    <th>Nama Barang</th>
+                                                    <th>Nama Ruangan</th>
                                                     <th>Jumlah</th>
                                                     <th>Status</th>
                                                     <th style="width: 10%">Aksi</th>

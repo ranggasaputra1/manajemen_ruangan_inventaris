@@ -25,7 +25,7 @@
                                 </a>
                                 <!-- Print PDF Buttons -->
                                 <div class="ms-2">
-                                    <a href="{{ route('barang.print', ['sort_by' => 'newest']) }}" class="btn btn-danger"
+                                    <a href="{{ route('barang.print', ['sort_by' => 'oldest']) }}" class="btn btn-danger"
                                         target="_blank">
                                         <i class="fa fa-print"></i> Cetak
                                     </a>
